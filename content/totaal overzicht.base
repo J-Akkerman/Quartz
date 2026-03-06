@@ -1,0 +1,46 @@
+properties:
+  note.prod/koop:
+    displayName: category
+  note.hoeveelheid:
+    displayName: eenheden
+views:
+  - type: table
+    name: onderdelen overzicht
+    filters:
+      and:
+        - '!note["prod/koop"].isEmpty()'
+        - '!file.path.startsWith("attachments/templates")'
+    order:
+      - file.name
+      - file.folder
+      - prod/koop
+      - identificatie
+      - hoeveelheid
+      - kosten/eenheid
+      - leverancier
+      - waar te vinden
+    sort:
+      - property: leverancier
+        direction: DESC
+      - property: waar te vinden
+        direction: ASC
+      - property: file.name
+        direction: ASC
+      - property: hoeveelheid
+        direction: ASC
+      - property: prijs/stuk
+        direction: DESC
+      - property: maak/koop
+        direction: DESC
+    columnSize:
+      file.name: 168
+      note.hoeveelheid: 99
+  - type: table
+    name: ALLES
+    order:
+      - file.name
+      - file.backlinks
+      - file.basename
+      - file.ctime
+      - file.embeds
+      - file.fullname
